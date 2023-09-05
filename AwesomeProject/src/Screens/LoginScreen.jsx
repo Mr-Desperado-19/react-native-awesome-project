@@ -41,9 +41,6 @@ export default function LoginScreen({ navigation }) {
     password,
   };
 
-  // const onSubmit = () => {
-  //   console.log(form);
-  // };
   const validateEmail = (text) => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const isValid = emailRegex.test(text);
@@ -59,9 +56,11 @@ export default function LoginScreen({ navigation }) {
       console.log("Введіть пошту у форматі abcd@mail.com");
     }
   };
+
   const showPassword = () => {
     setIsPasswordShow(!isPasswordShow);
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
@@ -81,10 +80,11 @@ export default function LoginScreen({ navigation }) {
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
               >
                 <TextInput
-                  style={{
-                    ...styles.input,
-                    borderColor: isEmailFocused ? "#FF6C00" : "#E8E8E8",
-                  }}
+                  style={[
+                    styles.input,
+                    isEmailFocused ? activeInputBorder : null,
+                    isEmailFocused ? activeInputBackground : null,
+                  ]}
                   placeholder="Адреса електронної пошти"
                   placeholderTextColor="#BDBDBD"
                   value={email}
@@ -104,10 +104,11 @@ export default function LoginScreen({ navigation }) {
                   behavior={Platform.OS == "ios" ? "padding" : "height"}
                 >
                   <TextInput
-                    style={{
-                      ...styles.input,
-                      borderColor: isPasswordFocused ? "#FF6C00" : "#E8E8E8",
-                    }}
+                    style={[
+                      styles.input,
+                      isPasswordFocused ? activeInputBorder : null,
+                      isPasswordFocused ? activeInputBackground : null,
+                    ]}
                     placeholder="Пароль"
                     placeholderTextColor="#BDBDBD"
                     value={password}
@@ -154,6 +155,7 @@ export default function LoginScreen({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -232,3 +234,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 });
+
+const activeInputBorder = {
+  borderColor: "#FF6C00",
+};
+
+const activeInputBackground = {
+  backgroundColor: "#FFFFFF",
+};

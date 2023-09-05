@@ -101,10 +101,11 @@ export default function RegistrationScreen({ navigation }) {
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
               >
                 <TextInput
-                  style={{
-                    ...styles.input,
-                    borderColor: isLoginFocused ? "#FF6C00" : "#E8E8E8",
-                  }}
+                  style={[
+                    styles.input,
+                    isLoginFocused ? activeInputBorder : null,
+                    isLoginFocused ? activeInputBackground : null,
+                  ]}
                   placeholder="Логін"
                   placeholderTextColor="#BDBDBD"
                   value={login}
@@ -117,10 +118,11 @@ export default function RegistrationScreen({ navigation }) {
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
               >
                 <TextInput
-                  style={{
-                    ...styles.input,
-                    borderColor: isEmailFocused ? "#FF6C00" : "#E8E8E8",
-                  }}
+                  style={[
+                    styles.input,
+                    isEmailFocused ? activeInputBorder : null,
+                    isEmailFocused ? activeInputBackground : null,
+                  ]}
                   placeholder="Адреса електронної пошти"
                   placeholderTextColor="#BDBDBD"
                   value={email}
@@ -140,10 +142,11 @@ export default function RegistrationScreen({ navigation }) {
                   behavior={Platform.OS == "ios" ? "padding" : "height"}
                 >
                   <TextInput
-                    style={{
-                      ...styles.input,
-                      borderColor: isPasswordFocused ? "#FF6C00" : "#E8E8E8",
-                    }}
+                    style={[
+                      styles.input,
+                      isPasswordFocused ? activeInputBorder : null,
+                      isPasswordFocused ? activeInputBackground : null,
+                    ]}
                     placeholder="Пароль"
                     placeholderTextColor="#BDBDBD"
                     value={password}
@@ -245,9 +248,9 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     height: 50,
     borderRadius: 8,
-    backgroundColor: "#F6F6F6",
     fontSize: 16,
     color: "#212121",
+    backgroundColor: "#F6F6F6",
   },
   btn: {
     backgroundColor: "#FF6C00",
@@ -286,3 +289,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 });
+
+const activeInputBorder = {
+  borderColor: "#FF6C00",
+};
+
+const activeInputBackground = {
+  backgroundColor: "#FFFFFF",
+};
